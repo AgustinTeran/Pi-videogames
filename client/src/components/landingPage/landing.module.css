@@ -1,0 +1,32 @@
+.App {
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+  }
+  
+  .imagen{
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+  }
+  
+  .but{
+    position: absolute;
+    margin: 50px;
+    height: 43px;
+    padding: 3px 16px;
+    background-color: rgba(0, 0, 0, 0.362);
+    border: 2px solid rgba(255, 255, 255, 0.772);
+    color: rgba(255, 255, 255, 0.869);
+    font-size: 20px;
+    font-weight: bold;
+    border-radius: 5px;
+    box-shadow: 0px 0px 40px rgba(255, 255, 255, 0.424);
+  }
+  
+  .but:hover{
+    background-color: rgba(255, 255, 255, 0.303);
+    cursor: pointer;
+  }

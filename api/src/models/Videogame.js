@@ -14,13 +14,17 @@ module.exports = (sequelize) => {
     name: {
       type: DataTypes.STRING,
       allowNull: false,
+      unique: true
     },
     description: {
-      type: DataTypes.STRING,
+      type: DataTypes.TEXT,
       allowNull: false
     },
+    background_image:{
+      type: DataTypes.TEXT
+    },
     released: {
-      type: DataTypes.DATE,
+      type: DataTypes.DATEONLY,
       defaulfValue: DataTypes.NOW,
       allowNull: false
     },
@@ -30,10 +34,6 @@ module.exports = (sequelize) => {
         min: 0,
         max: 5
       }
-    },
-    plataforms: {
-      type: DataTypes.ARRAY(DataTypes.STRING),
-      allowNull: false
     }
   },{timestamps: false});
 };

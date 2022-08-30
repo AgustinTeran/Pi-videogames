@@ -1,0 +1,9 @@
+.nav{
+    display: flex;
+    justify-content: space-between;
+}
+
+.buscador{
+    display: flex;
+    align-items: center;
+}

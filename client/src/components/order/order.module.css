@@ -1,0 +1,45 @@
+.container{
+    /* outline: solid blue 2px; */
+    width: 100px;
+    position: relative;
+}
+
+.h3{
+    border: 2px solid rgba(255, 255, 255, 0.701);
+    border-radius: 4px;
+    box-shadow: 0 0 3px rgba(255, 255, 255, 0.701);
+    font-size: 15px;
+}
+
+.h3:hover{
+    cursor: pointer;
+    color: #282c34;
+    background-color: white;
+    border: solid 2px rgba(255, 255, 255, 0.701);
+}
+
+.active{
+    display: block;
+    position: absolute;
+    border: solid #282c34 2px;
+    text-align: left;
+    right: 0;
+    bottom: -53px;
+    background-color: rgb(255, 255, 255);
+}
+
+.volver{
+    color: #282c34;
+    background-color: white;
+    border: solid 2px #282c34;
+    border: solid 2px white;
+}
+
+.volver:hover{
+    border: solid 2px rgba(255, 255, 255, 0.701);
+    background-color: rgba(255, 255, 255, 0.701);
+}
+
+.notActive{
+    display: none;
+}

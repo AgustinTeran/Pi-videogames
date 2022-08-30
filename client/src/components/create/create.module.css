@@ -1,0 +1,93 @@
+.container{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100vh;
+    text-align: center;
+}
+
+.form{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.divs{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    border: rgba(255, 255, 255, 0.559) solid 2px;
+    margin: 20px;
+    width: 300px;
+    min-height: 70px;
+}
+
+.Send{
+    display: flex;
+    justify-content: center;
+}
+
+.submit{
+    background-color: transparent;
+    padding: 8px;
+    width: 30%;
+    border: solid white 3px;
+    color: white;
+    border-radius: 4px;
+    margin: 30px;
+    font-size: large;
+    font-weight: bold;
+    box-shadow: 0 0px 7px rgba(255, 255, 255, 0.678);
+}
+
+.submit:hover{
+    background-color: white;
+    color: #282c34;
+    cursor: pointer;
+    box-shadow: 0 0px 15px rgba(255, 255, 255, 0.807);
+}
+
+.volver{
+    position: fixed;
+    font-Size:29px;
+    padding:0px 6px;
+    background-color: #282c34;
+    color: white;
+    border: solid 2px white;
+    margin: 9px 0 0 9px;
+    border-radius: 100%;
+}
+
+.volver:hover{
+    background-color: white;
+    color: #282c34;
+    cursor: pointer;
+}
+
+.lista{
+    display: flex;
+    /* outline: blue solid 2px; */
+    margin: 3px 0;
+    flex-wrap: wrap;
+    max-width: 100%;
+    justify-content: center;
+}
+
+
+
+.but:hover{
+    background-color: rgba(255, 0, 0, 0.832);
+    border: rgba(255, 0, 0, 0.832) solid 2px;
+    color: white;
+    cursor: pointer;
+}
+
+.err{
+    border-color: rgba(255, 0, 0, 0.757);
+}
+
+.span{
+    color: red;
+    font-size: 14px;
+}

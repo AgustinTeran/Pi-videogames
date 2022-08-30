@@ -1,0 +1,21 @@
+.container{
+    outline: solid blue 2px;
+    width: 300px;
+    height: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+    margin: 15px;
+    color: white;
+}
+
+.container:hover{
+    background-color: rgba(255, 255, 255, 0.115);
+    cursor: pointer;
+}
+
+.link{
+    text-decoration: none;
+}

@@ -51,3 +51,12 @@
   .err{
     text-shadow: 0 0 7px black;
   }
+
+  @media (max-width: 400px) {
+    .subNav{
+      position: relative;
+    }
+    .butPag{
+      padding: 0px 4px;
+    }
+  }

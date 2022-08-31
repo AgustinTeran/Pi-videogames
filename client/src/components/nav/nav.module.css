@@ -44,3 +44,14 @@
     color: white;
     margin: 7px;
 }
+
+@media (max-width: 600px) {
+    .inp{
+        padding: 3px 7px;
+        width: 130px;
+    }
+    .create{
+        padding: 3px 8px;
+        font-size: 13px;
+    }
+  }

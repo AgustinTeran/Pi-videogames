@@ -21,7 +21,7 @@ export default function Details(){
                 <>
                     <button onClick={() => history.goBack()} className={"volver"}>⇐</button>
                 <div className={s.container}>
-                    <h1>{game.name}</h1>
+                    <h1 className={s.title}>{game.name}</h1>
                     <img src={game.background_image} alt={`${game.name} image`} className={s.image}/>
                     <h2>Rating:  ⭐{game.rating}</h2>
                     <div className={s.divMap}>

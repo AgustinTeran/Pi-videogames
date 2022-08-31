@@ -49,3 +49,8 @@
     /* border-bottom: solid rgba(255, 255, 255, 0.765) 2px; */
 }
 
+@media (max-width: 600px) {
+    .title{
+        margin-top: 55px;
+    }
+  }

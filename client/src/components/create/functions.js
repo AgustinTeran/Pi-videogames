@@ -1,6 +1,6 @@
 import { Create } from "../../redux/actions"
 
-export function change(e,setState,setError){
+export function change(e,setState,setError,games){
     if(e.target.name == "genres" || e.target.name == "plataforms"){
         setState(prev => {return {
             ...prev,
@@ -12,10 +12,10 @@ export function change(e,setState,setError){
             [e.target.name]: e.target.value
         }})
     }
-    err(e,setError)
+    err(e,setError,games)
 }
 
- function err(e,setError){
+ function err(e,setError,games){
     if(e.target.name !== "genres" && e.target.name !== "plataforms"){
         if(!e.target.value){   
             setError(errores => {return {
@@ -29,11 +29,21 @@ export function change(e,setState,setError){
             if(e.target.name == "description" && e.target.value.length < 20){
                 return setError(errores => {return {...errores,[e.target.name]: "Debe tener al menos 20 caracteres"}})
             }
-            if(e.target.name == "name" && e.target.value.length < 3){
-                return setError(errores => {return {...errores,[e.target.name]: "Debe tener al menos 3 caracteres"}})
+            if(e.target.name == "name"){
+                if(e.target.value.length < 3){
+                    return setError(errores => {return {...errores,[e.target.name]: "Debe tener al menos 3 caracteres"}})
+                }
+                if(games.filter(game => game.name.toUpperCase() == e.target.value.toUpperCase()).length){
+                    return setError(errores => {return {...errores,[e.target.name]: "Ya existe un videojuego con ese nombre"}})
+                }
             }
-            if(e.target.name == "image" && ( !(/\S+:+\S+\.+\S/.test(e.target.value)) )){
-                return setError(errores => {return {...errores,[e.target.name]: "Debe ser un link"}})
+            if(e.target.name == "image"){
+                if(!(/\S+:+\S+\.+\S/.test(e.target.value))){
+                    return setError(errores => {return {...errores,[e.target.name]: "Debe ser un link"}})
+                }
+                if(games.filter(game => game.background_image.toUpperCase() == e.target.value.toUpperCase()).length){
+                    return setError(errores => {return {...errores,[e.target.name]: "Ya existe un videojuego con esa imagen"}})
+                }
             }
             setError(errores => {return {...errores,[e.target.name]:""}})
         }

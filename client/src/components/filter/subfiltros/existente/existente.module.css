@@ -7,9 +7,4 @@
     color: gray;
     border: solid 2px gray;
     margin: 2px 0;
-    /* width: 100%; */
-}
-
-.select:hover{
-    cursor: pointer;
 }

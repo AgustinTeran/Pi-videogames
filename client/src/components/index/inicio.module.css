@@ -9,3 +9,45 @@
     justify-content: space-between;
     align-items: center;
 }
+
+.imagen{
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    position: fixed;
+    bottom: 0;
+    z-index: -1;
+  }
+
+  .paginado{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    width: 100%;
+  }
+
+  .butPag{
+    background-color: rgb(255, 255, 255);
+    margin: 2px;
+    padding: 4px 8px;
+    border: solid white 2px;
+    color: black;
+    font-size: 15px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px black;
+  }
+
+  .butPag:hover{
+    cursor: pointer;
+    background-color: lightgray;
+    border-color: lightgray;
+  }
+
+  .active{
+    background-color: rgb(255, 255, 1);
+    border-color: rgb(255, 255, 1);
+  }
+
+  .err{
+    text-shadow: 0 0 7px black;
+  }

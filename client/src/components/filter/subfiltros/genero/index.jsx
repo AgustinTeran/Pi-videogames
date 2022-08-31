@@ -1,6 +1,7 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Filtros } from "../../../../redux/actions";
+import s from "./genero.module.css"
 
 
 
@@ -11,7 +12,7 @@ export default function Genres(){
 
     return (
         <div>
-            <select value={filtros.genre} onChange={e => dispatch(Filtros({...filtros, genre: e.target.value}))}>
+            <select className={s.select} value={filtros.genre} onChange={e => dispatch(Filtros({...filtros, genre: e.target.value}))}>
                  <option hidden>Por Genero</option>
                  {!filtros.genre? null :<option value="">Todos</option>}
                 {

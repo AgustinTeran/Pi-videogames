@@ -1,5 +1,4 @@
 .container{
-    outline: solid blue 2px;
     width: 300px;
     height: 400px;
     display: flex;
@@ -9,13 +8,42 @@
     text-align: center;
     margin: 15px;
     color: white;
+    background-color: rgba(0, 0, 0, 0.692);
+    border-radius: 10px;
+    box-shadow: 0 0 15px white;
 }
 
 .container:hover{
-    background-color: rgba(255, 255, 255, 0.115);
+    background-color: rgba(0, 0, 0, 0.233);
     cursor: pointer;
+    text-shadow: 0 0 7px black;
 }
 
 .link{
     text-decoration: none;
+}
+
+.genres{
+    display: flex;
+    justify-content: space-evenly;
+    width: 100%;
+    flex-wrap: wrap;
+}
+
+.image{
+    width: 95%;
+    object-fit: cover;
+    height: 200px;
+    border-radius: 10px;
+    background-color: black;
+}
+
+.text{
+    padding: 4px;
+    font-size: 28px;
+}
+
+.genre{
+    margin: 7px;
+    padding: 0;
 }

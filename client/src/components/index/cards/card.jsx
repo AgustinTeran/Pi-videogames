@@ -7,11 +7,11 @@ export default function Card({name,id,image,genres,nro}){
     return (
         <Link to={`/game/${id}`} className={s.link}>
         <div className={s.container}>
-            <h1 className={s.text}>{nro} {name}</h1>
-            <img src={image} alt={name} style={{width: "100px",height:"100px"}}/>
-            <div>
+            <h1 className={s.text}>{name}</h1>
+            <img src={image} alt={name} className={s.image}/>
+            <div className={s.genres}>
                 {
-                    genres.map((e,i) => <p key={i}>{e}</p>)
+                    genres.map((e,i) => <p className={s.genre} key={i}>{e}</p>)
                 }
             </div>
         </div>

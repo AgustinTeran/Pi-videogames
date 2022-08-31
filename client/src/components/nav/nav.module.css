@@ -1,9 +1,46 @@
 .nav{
     display: flex;
     justify-content: space-between;
+    height: 60px;
+    background-color: #282c34;
+    margin-bottom: 10px;
+    border-bottom: 1px solid gray;
+    box-shadow: 0 3px 5px lightgray;
 }
 
 .buscador{
     display: flex;
     align-items: center;
+}
+
+.create{
+    color: white;
+    border: solid 2px white;
+    border-radius: 15px;
+    margin: 10px;
+    padding: 2px 16px;
+    background-color: transparent;
+    box-shadow: 0 0 2px white;
+}
+
+.create:hover{
+    background-color: rgb(255, 255, 255);
+    box-shadow: 0 0 10px rgba(255, 255, 255);
+    color: black;
+    border-color: whitesmoke;
+}
+
+.link{
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+}
+
+.inp{
+    background-color: rgba(0, 0, 0, 0.081);
+    border: solid 2px white;
+    padding: 4px 10px;
+    border-radius: 36px;
+    color: white;
+    margin: 7px;
 }

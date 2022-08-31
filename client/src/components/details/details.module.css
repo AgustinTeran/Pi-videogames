@@ -1,0 +1,51 @@
+.container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.image{
+    width: 98%;
+    border-radius: 19px;
+    box-shadow: 0 0 10px white;
+    object-fit: scale-down;
+    max-height: 625px;
+    margin: 10px;
+    background-color: black;
+}
+
+.divMap{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    outline: solid 2px rgba(255, 255, 255, 0.743);
+    border-radius: 10px;
+    background-color: rgba(255, 255, 255, 0.063);
+    width: 80%;
+    align-items: center;
+    margin: 20px;
+}
+
+.subDivMap{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-wrap: wrap;
+    /* min-height: 50px; */
+    width: 100%;
+    color: rgba(255, 255, 255, 0.89);
+}
+
+.mapElement{
+    padding: 0px 7px;
+    min-width: 90px;
+    font-size: 15px;
+    margin: 7px 0px;
+}
+
+.titleDivMap{
+    margin: 5px 0 10px 0;
+    font-size: 20px;
+    /* border-bottom: solid rgba(255, 255, 255, 0.765) 2px; */
+}
+

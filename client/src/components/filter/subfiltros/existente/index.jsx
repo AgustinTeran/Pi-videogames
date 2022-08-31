@@ -1,13 +1,14 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Filtros } from "../../../../redux/actions";
+import s from "./existente.module.css"
 
 export default function Existente(){
     var filtros = useSelector(state => state.filtros)
     var dispatch = useDispatch()
     return (
         <div>
-            <select value={filtros.create} onChange={e => dispatch(Filtros({...filtros,create: e.target.value}))}>
+            <select className={s.select} value={filtros.create} onChange={e => dispatch(Filtros({...filtros,create: e.target.value}))}>
                 <option hidden>Por Creados/Existentes</option>
                 {!filtros.create? null :<option value="">Todos</option>}
                 <option value={1}>Existentes</option> {/* El valor es un nro para que el typeof sea nro */}

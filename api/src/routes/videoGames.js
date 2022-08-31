@@ -6,8 +6,7 @@ const {
 var express = require("express")
 const { bindComplete } = require("pg-protocol/dist/messages")
 var router = express.Router()
-var {Videogame, conn} = require("../db")
-var {Op, where} = require("sequelize")
+var {Videogame, conn, Op} = require("../db")
 var axios = require("axios")
 var {buscadora} = require("../funciones")
 
@@ -98,7 +97,16 @@ router.get("/:id",async(req,res) => {
 
 router.post("/",async(req,res) => {
     try {
-        var {name,description,released,rating,plataforms,genres,image} = req.body
+       var {name,description,released,rating,plataforms,genres,image} = req.body
+       var existe = await Videogame.findAll({
+            where: {
+                [Op.or]:[{name:name},{background_image:image}]
+            }
+       })
+       
+       if(existe.length){
+        throw new Error("Ya existe ese videojuego")
+       }
        var newGame = await Videogame.create({
             name,description,released,rating,background_image: image
         })
@@ -106,7 +114,7 @@ router.post("/",async(req,res) => {
          await newGame.addPlataforms(plataforms)
         res.send({id: newGame.id,name: newGame.name,background_image:newGame.background_image,genres})
     } catch (error) {
-        res.send("cannot create the videogame")
+        res.status(404).send(error.message)
     }
 })
 

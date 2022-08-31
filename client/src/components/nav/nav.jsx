@@ -25,9 +25,9 @@ export default function Nav(){
     
     return (
         <nav className={s.nav}>
-                <NavLink to={"/create"}><h4>Crear Juego</h4></NavLink>
+                <NavLink to={"/create"} className={s.link}><h4 className={s.create}>CREAR JUEGO</h4></NavLink>
                 <div className={s.buscador}>
-                     <input type="text" placeholder="Buscar juego..." value={search} onChange={e => {dispatch(Search(e.target.value))}}/>
+                     <input className={s.inp} type="text" placeholder="Buscar juego..." value={search} onChange={e => {dispatch(Search(e.target.value))}}/>
                 </div>
         </nav>
     )

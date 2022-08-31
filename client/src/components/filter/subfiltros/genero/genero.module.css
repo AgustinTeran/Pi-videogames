@@ -2,14 +2,10 @@
     padding: 3px 5px;
     border-radius: 5px;
     background-color: white;
-    box-shadow: 0 0 80px rgba(0, 0, 0, 0.133);
+    box-shadow: 0 0 80px rgba(255, 253, 253, 0.133);
     font-weight: bold;
     color: gray;
     border: solid 2px gray;
     margin: 2px 0;
-    /* width: 100%; */
-}
-
-.select:hover{
-    cursor: pointer;
+    width: 100%;
 }

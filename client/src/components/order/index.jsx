@@ -15,7 +15,7 @@ export default function Orden(){
             <div className={state? s.active : s.notActive}>
                 <Nombre/>
                 <Rating/>
-                <button onClick={() => dispatch(ord(""))}>Por defecto</button>
+                <button className={s.but} onClick={() => dispatch(ord(""))}>Por defecto</button>
             </div> 
         </div>
     )

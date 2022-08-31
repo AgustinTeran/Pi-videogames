@@ -53,7 +53,7 @@ export function Create(obj){
     return function(dispatch){
         axios.post("http://localhost:3001/videogames",obj)
         .then(() => alert(`SE CREO ${obj.name}`))
-        .catch(err => console.error(err))
+        .catch(err => {alert("Ya existe un videojuego con ese nombre o imagen")})
     }
 }
 

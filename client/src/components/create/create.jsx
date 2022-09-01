@@ -14,7 +14,7 @@ export default function Crear(){
     var unique = useSelector(state => state.uniqueData)
 
     useEffect(() => {
-        dispatch(Platforms())
+        if(!platforms.length) dispatch(Platforms())
         if(!genres.length) dispatch(Genres())
         if(!unique.length) dispatch(Games())
     },[unique])

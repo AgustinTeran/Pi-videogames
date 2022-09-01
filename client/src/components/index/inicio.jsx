@@ -23,7 +23,7 @@ export default function Inicio(){
 
     useEffect(() => {
         if(!globalState.searchValue) dispatch(Games())
-        dispatch(Genres())
+        if(!globalState.genres.length) dispatch(Genres())
     },[globalState.filtros,globalState.order,globalState.searchValue])
 
     return (

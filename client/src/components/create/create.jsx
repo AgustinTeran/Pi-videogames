@@ -55,7 +55,7 @@ export default function Crear(){
 
     return (
         <div>
-            <button onClick={() => {dispatch(LimpiarGames());history.goBack()}} className={"volver"}>⇐</button>
+            <button onClick={() => {history.goBack()}} className={"volver"}>⇐</button>
             <form onSubmit={e => sub(e,state,errores,setState,setError,dispatch)} className={s.container}>
                 <h1>Crea un Juego</h1>
                 <div className={s.form} >

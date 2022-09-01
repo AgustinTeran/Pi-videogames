@@ -57,12 +57,6 @@ export function Create(obj){
     }
 }
 
-export function LimpiarGames(){
-    return ({
-        type: "LIMPIAR"
-    })
-}
-
 export function Filtros(obj){
     return ({
         type: "FILTROS",

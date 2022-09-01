@@ -87,11 +87,6 @@ export default function Reducer(state = initialState, action){
                 ...state,
                 platforms: action.payload
             })
-        case "LIMPIAR":
-            return ({
-                ...state,
-                games: []
-            })
         case "FILTROS": 
             return ({
                 ...state,

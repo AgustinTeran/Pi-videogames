@@ -4,14 +4,15 @@ const {
   } = process.env;
 
 var express = require("express")
-const { bindComplete } = require("pg-protocol/dist/messages")
 var router = express.Router()
-var {Videogame, conn, Op} = require("../db")
+var {Videogame, conn} = require("../db")
 var axios = require("axios")
 var {buscadora} = require("../funciones")
 
 var Cache = [] // Para no estar haciendo pedidos a la api todo el tiempo, lo hago 1 vez y listo
-var cantidadGamesDb = ""
+var cantidadGamesDb = "" 
+var gamesAPI = []
+
 router.get("/", async(req,res) => {
     try{
         var {name} = req.query
@@ -28,22 +29,30 @@ router.get("/", async(req,res) => {
                gamesDB = gamesDB.map(e => {return {id: e.id,name: e.name,rating: e.rating, background_image: e.background_image, genres: e.genres.map(genre => genre.name)}})
                
                
-               var gamesAPI = []
-        
                let i = 1
-               if(!gamesAPI.length){
+               if(!Cache.length){
+                //console.log("Cargo los games de la api, osea que es el primer request si o si");
                 while(i < 6){
-                    var arr = await axios.get(`https://api.rawg.io/api/games?key=${API_KEY}&page=${i}`)
-                     .then(res => res.data.results.map(e => {
-                        e.platforms.map(p => conn.models.Plataforms.findOrCreate({
-                            where:{name: p.platform.name}
-                        }))
-                        return {id: e.id, name: e.name, rating:e.rating, background_image: e.background_image,genres: e.genres.map(e => e.name)}}))
-                     gamesAPI = [...gamesAPI, ...arr]
+                    await axios.get(`https://api.rawg.io/api/games?key=${API_KEY}&page=${i}`)
+                     .then(async(res) => {
+                        var results = res.data.results
+                        for (let j = 0; j < results.length; j++) {
+
+                            for (let k = 0; k < results[j].platforms.length; k++) {
+                                await conn.models.Plataforms.findOrCreate({
+                                   where:{name: results[j].platforms[k].platform.name}
+                                })    
+                            }
+
+                         gamesAPI.push({id: results[j].id, name: results[j].name, rating:results[j].rating, background_image: results[j].background_image,genres: results[j].genres.map(e => e.name)}) 
+                            
+                        }
+                      }
+                     )
                      i++
-                    }
+                }
                }
-            //    console.log("Me muestro solo si es el primer request que me hacen");
+            //    console.log("Me muestro solo si es el primer request o se agrego un juego");
              Cache = [...gamesDB,...gamesAPI]
         }
 

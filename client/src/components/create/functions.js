@@ -1,4 +1,4 @@
-import { Create } from "../../redux/actions"
+import { Create, LimpiarUnique } from "../../redux/actions"
 
 export function change(e,setState,setError,unique){
     if(e.target.name == "genres" || e.target.name == "plataforms"){
@@ -65,6 +65,7 @@ export function sub(e,state,errores,setState,setError,dispatch){
             genres:"",
             image:"Se require imagen"
         })
+        dispatch(LimpiarUnique())
     }else{
         alert("NO SE PUEDE CREAR SI HAY ERRORES")
     }

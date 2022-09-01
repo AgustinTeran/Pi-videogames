@@ -15,8 +15,9 @@ export default function Crear(){
 
     useEffect(() => {
         dispatch(Platforms())
+        if(!genres.length) dispatch(Genres())
         if(!unique.length) dispatch(Games())
-    },[])
+    },[unique])
 
     var history = useHistory()
     var [state,setState] = useState({

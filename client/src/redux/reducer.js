@@ -98,6 +98,11 @@ export default function Reducer(state = initialState, action){
                 ...state,
                 order: action.payload
             })
+        case "LIMPIAR_UNIQUE":
+            return ({
+                ...state,
+                uniqueData: []
+            })
         default: return ({
             ...state
         })

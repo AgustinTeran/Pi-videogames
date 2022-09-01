@@ -70,3 +70,9 @@ export function Orden(orden){
         payload: orden
     })
 }
+
+export function LimpiarUnique(){
+    return ({
+        type: "LIMPIAR_UNIQUE"
+    })
+}

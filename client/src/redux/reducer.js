@@ -6,7 +6,8 @@ var initialState = {
     genres: [],
     platforms: [],
     filtros: {create:"",genre:""},
-    order: ""
+    order: "",
+    uniqueData: []
 }
 
 export default function Reducer(state = initialState, action){
@@ -17,6 +18,9 @@ export default function Reducer(state = initialState, action){
                 actualPage: action.payload
             })
         case "GAMES": {
+            if(!state.uniqueData.length){
+                var unique = action.payload.map(e => {return {name: e.name,image: e.background_image}})
+            }
             if(state.filtros.create){
                 var tipo = Number(state.filtros.create)
                 if(tipo){
@@ -54,7 +58,8 @@ export default function Reducer(state = initialState, action){
             }
             return ({
                 ...state,
-                games: action.payload
+                games: action.payload,
+                uniqueData: unique? unique : state.uniqueData
             })
         }
         case "SEARCH":

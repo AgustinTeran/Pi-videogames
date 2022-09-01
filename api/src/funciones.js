@@ -4,7 +4,7 @@ function buscadora(arr,palabra){
 		// 				   PROPIEDAD QUE QUIERA FILTRAR
 		//                        |
 		// 						  V	
-		 arr = arr.filter(e => e.name[i].toUpperCase() == palabra[i].toUpperCase())
+		 arr = arr.filter(e => e.name[i]?.toUpperCase() === palabra[i].toUpperCase())
 	}
 	return arr
 	}

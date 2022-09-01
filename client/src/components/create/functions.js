@@ -1,6 +1,6 @@
 import { Create } from "../../redux/actions"
 
-export function change(e,setState,setError,games){
+export function change(e,setState,setError,unique){
     if(e.target.name == "genres" || e.target.name == "plataforms"){
         setState(prev => {return {
             ...prev,
@@ -12,10 +12,10 @@ export function change(e,setState,setError,games){
             [e.target.name]: e.target.value
         }})
     }
-    err(e,setError,games)
+    err(e,setError,unique)
 }
 
- function err(e,setError,games){
+ function err(e,setError,unique){
     if(e.target.name !== "genres" && e.target.name !== "plataforms"){
         if(!e.target.value){   
             setError(errores => {return {
@@ -33,7 +33,7 @@ export function change(e,setState,setError,games){
                 if(e.target.value.length < 3){
                     return setError(errores => {return {...errores,[e.target.name]: "Debe tener al menos 3 caracteres"}})
                 }
-                if(games.filter(game => game.name.toUpperCase() == e.target.value.toUpperCase()).length){
+                if(unique.filter(game => game.name.toUpperCase() == e.target.value.toUpperCase()).length){
                     return setError(errores => {return {...errores,[e.target.name]: "Ya existe un videojuego con ese nombre"}})
                 }
             }
@@ -41,7 +41,7 @@ export function change(e,setState,setError,games){
                 if(!(/\S+:+\S+\.+\S/.test(e.target.value))){
                     return setError(errores => {return {...errores,[e.target.name]: "Debe ser un link"}})
                 }
-                if(games.filter(game => game.background_image.toUpperCase() == e.target.value.toUpperCase()).length){
+                if(unique.filter(game => game.image.toUpperCase() == e.target.value.toUpperCase()).length){
                     return setError(errores => {return {...errores,[e.target.name]: "Ya existe un videojuego con esa imagen"}})
                 }
             }

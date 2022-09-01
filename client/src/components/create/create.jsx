@@ -11,11 +11,11 @@ export default function Crear(){
     var dispatch = useDispatch()
     var genres = useSelector(state => state.genres)
     var platforms = useSelector(state => state.platforms)
-    var games = useSelector(state => state.games)
+    var unique = useSelector(state => state.uniqueData)
 
     useEffect(() => {
         dispatch(Platforms())
-        if(!games.length) dispatch(Games())
+        if(!unique.length) dispatch(Games())
     },[])
 
     var history = useHistory()
@@ -61,17 +61,17 @@ export default function Crear(){
                 <div className={s.form} >
                     <div className={errores.name? `${s.err} ${s.divs}` : s.divs}>
                         <label>Nombre Del Videojuego</label>
-                        <input type="text" id="nombre" onChange={e => change(e,setState,setError,games)} placeholder="Nombre" name="name" value={state.name}/>
+                        <input type="text" id="nombre" onChange={e => change(e,setState,setError,unique)} placeholder="Nombre" name="name" value={state.name}/>
                         <span className={s.span}>{errores.name}</span>
                     </div>
                     <div className={errores.released? `${s.err} ${s.divs}` : s.divs}>
                         <label>Fecha De Lanzamiento</label>
-                        <input type="date" id="fecha en la que se realizo" onChange={e => change(e,setState,setError,games)} name="released" value={state.released}/>
+                        <input type="date" id="fecha en la que se realizo" onChange={e => change(e,setState,setError)} name="released" value={state.released}/>
                         <span className={s.span}>{errores.released}</span>
                     </div>
                     <div className={errores.rating? `${s.err} ${s.divs}` : s.divs}>
                         <label>Rating</label>
-                        <input type="number" id="rating/puntaje" onChange={e => change(e,setState,setError,games)} placeholder="Rating" name="rating" value={state.rating}/>
+                        <input type="number" id="rating/puntaje" onChange={e => change(e,setState,setError)} placeholder="Rating" name="rating" value={state.rating}/>
                         <span className={s.span}>{errores.rating}</span>
                     </div>
                     <div className={errores.genres? `${s.err} ${s.divs}` : s.divs}>
@@ -131,12 +131,12 @@ export default function Crear(){
                     </div>
                     <div className={errores.image? `${s.err} ${s.divs}` : s.divs}>
                         <label>Imagen</label>
-                        <input type="text" id="imagen" onChange={e => change(e,setState,setError,games)} placeholder="Link de Imagen" name="image" value={state.image}/>
+                        <input type="text" id="imagen" onChange={e => change(e,setState,setError,unique)} placeholder="Link de Imagen" name="image" value={state.image}/>
                         <span className={s.span}>{errores.image}</span>
                     </div>
                     <div className={errores.description? `${s.err} ${s.divs}` : s.divs}>
                         <label>Descripción</label>
-                        <textarea type="text" id="descripción" onChange={e => change(e,setState,setError,games)} placeholder="Descripción" name="description" value={state.description}/>
+                        <textarea type="text" id="descripción" onChange={e => change(e,setState,setError)} placeholder="Descripción" name="description" value={state.description}/>
                         <span className={s.span}>{errores.description}</span>
                     </div>
                 </div>

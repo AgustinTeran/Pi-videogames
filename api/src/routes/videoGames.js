@@ -19,6 +19,7 @@ router.get("/", async(req,res) => {
 
         if(!Cache.length || await Videogame.count() !== cantidadGamesDb){
             cantidadGamesDb = await Videogame.count()
+            console.log("AHHH",await Videogame.count());
             var gamesDB = await conn.models.Videogame.findAll({
                 attributes: ["id","name","background_image","rating"],
                 include: [{

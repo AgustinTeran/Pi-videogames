@@ -1,4 +1,4 @@
-import { Create, LimpiarUnique } from "../../redux/actions"
+import { Create, LimpiarGames, LimpiarUnique } from "../../redux/actions"
 
 export function change(e,setState,setError,unique){
     if(e.target.name == "genres" || e.target.name == "plataforms"){
@@ -66,6 +66,7 @@ export function sub(e,state,errores,setState,setError,dispatch){
             image:"Se require imagen"
         })
         dispatch(LimpiarUnique())
+        dispatch(LimpiarGames())
     }else{
         alert("NO SE PUEDE CREAR SI HAY ERRORES")
     }

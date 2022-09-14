@@ -76,3 +76,9 @@ export function LimpiarUnique(){
         type: "LIMPIAR_UNIQUE"
     })
 }
+
+export function LimpiarGames(){
+    return ({
+        type: "LIMPIAR_GAMES"
+    })
+}

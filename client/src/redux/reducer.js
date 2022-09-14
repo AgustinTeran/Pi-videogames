@@ -62,6 +62,11 @@ export default function Reducer(state = initialState, action){
                 uniqueData: unique? unique : state.uniqueData
             })
         }
+        case "LIMPIAR_GAMES": 
+            return ({
+                ...state,
+                games: []
+            })
         case "SEARCH":
             return ({
                 ...state,

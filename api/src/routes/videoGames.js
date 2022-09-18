@@ -15,6 +15,7 @@ var gamesAPI = []
 
 router.get("/", async(req,res) => {
     try{
+        console.log("1 CACHE:" , Cache);
         var {name} = req.query
 
         if(!Cache.length || await Videogame.count() !== cantidadGamesDb){
@@ -28,6 +29,7 @@ router.get("/", async(req,res) => {
                 }]
                })
                gamesDB = gamesDB.map(e => {return {id: e.id,name: e.name,rating: e.rating, background_image: e.background_image, genres: e.genres.map(genre => genre.name)}})
+        console.log("2 GAMESDB:" , gamesDB);
                
                
                let i = 1
@@ -53,9 +55,12 @@ router.get("/", async(req,res) => {
                      i++
                 }
                }
+        console.log("3 GAMESAPI:" , gamesAPI);
+
             //    console.log("Me muestro solo si es el primer request o se agrego un juego");
              Cache = [...gamesDB,...gamesAPI]
         }
+        console.log("4 final:" , Cache);
 
         // console.log("Me muestro siempre");
  

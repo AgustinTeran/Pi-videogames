@@ -10,7 +10,7 @@ export function Page(nro){
 
 export function Games(){
     return function(dispatch){
-        axios.get("http://localhost:3001/videogames")
+        axios.get("https://pi-videogames-back-delta.vercel.app/videogames")
         .then(res => dispatch({type: "GAMES", payload: res.data}))
         .catch(err => console.error(err))
     }
@@ -18,7 +18,7 @@ export function Games(){
 
 export function Search(game){
     return function(dispatch){
-        axios.get(`http://localhost:3001/videogames?name=${game}`)
+        axios.get(`https://pi-videogames-back-delta.vercel.app/videogames?name=${game}`)
         .then(res => dispatch({type: "SEARCH", payload: res.data}))
         .then(() => dispatch({type: "SEARCH_VALUE", payload: game}))
         .catch(err => console.error(err))
@@ -27,7 +27,7 @@ export function Search(game){
 
 export function GameDetail(id){
     return function(dispatch){
-        axios.get(`http://localhost:3001/videogames/${id}`)
+        axios.get(`https://pi-videogames-back-delta.vercel.app/videogames/${id}`)
         .then(res => dispatch({type: "DETAILS",payload: res.data}))
         .catch(err => console.error(err))
     }
@@ -35,7 +35,7 @@ export function GameDetail(id){
 
 export function Genres(){
     return function(dispatch){
-        axios.get(`http://localhost:3001/genres`)
+        axios.get(`https://pi-videogames-back-delta.vercel.app/genres`)
         .then(res => dispatch({type: "GENRES",payload: res.data}))
         .catch(err => console.error(err))
     }
@@ -43,7 +43,7 @@ export function Genres(){
 
 export function Platforms(){
     return function(dispatch){
-        axios.get("http://localhost:3001/plataforms")
+        axios.get("https://pi-videogames-back-delta.vercel.app/plataforms")
         .then(res => dispatch({type:"PLATFORMS",payload:res.data}))
         .catch(err => console.error(err))
     }
@@ -51,7 +51,7 @@ export function Platforms(){
 
 export function Create(obj){
     return function(dispatch){
-        axios.post("http://localhost:3001/videogames",obj)
+        axios.post("https://pi-videogames-back-delta.vercel.app/videogames",obj)
         .then(() => alert(`SE CREO ${obj.name}`))
         .catch(err => console.error(err))
     }

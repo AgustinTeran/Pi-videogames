@@ -62,7 +62,7 @@ router.get("/", async(req,res) => {
         // console.log("Me muestro siempre");
  
        if(!name){
-        res.json(Cache)
+        res.json([...Cache])
        } else {
         //  funcion para filtrar importada desde funciones.js
            res.send(buscadora(Cache,name)) 

@@ -68,7 +68,7 @@ router.get("/", async(req,res) => {
            res.send(buscadora(Cache,name)) 
        }
     }catch(e){
-        res.send(e.message)
+        res.send(e)
     }
 })
 

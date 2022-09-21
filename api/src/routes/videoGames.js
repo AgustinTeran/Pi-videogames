@@ -35,7 +35,7 @@ router.get("/", async(req,res) => {
                if(!Cache.length){
                 //console.log("Cargo los games de la api, osea que es el primer request si o si");
                 while(i < 6){
-                    await axios.get(`https://api.rawg.io/api/games?key=${API_KEY}&page=${i}`)
+                    await axios.get(`https://api.rawg.io/api/games?key=b3effa1b29134ffeb941091f7fd2c1ff&page=${i}`)
                      .then(async(res) => {
                         var results = res.data.results
                         for (let j = 0; j < results.length; j++) {

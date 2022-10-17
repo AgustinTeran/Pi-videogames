@@ -10,7 +10,7 @@ const link = "postgres://nbedwromctzwid:2452d3bbad472a3f9aac2ec9bf62c0df98b0e6f8
 const sequelize = new Sequelize({
   database: "d12amqem5ik0vu",
   dialect: "postgres",
-  host: `${DEPLOY_PASSWORD}`,
+  host: `${DEPLOY_HOST}`,
   port: "5432",
   username: `${DEPLOY_USERNAME}`,
   password: `${DEPLOY_PASSWORD}`,

@@ -3,17 +3,17 @@ const { Sequelize, Op} = require('sequelize');
 const fs = require('fs');
 const path = require('path');
 const {
-  DB_USER, DB_PASSWORD, DB_HOST,
+  DB_USER, DB_PASSWORD, DB_HOST,DEPLOY_HOST,DEPLOY_USERNAME,DEPLOY_PASSWORD
 } = process.env;
 
 const link = "postgres://nbedwromctzwid:2452d3bbad472a3f9aac2ec9bf62c0df98b0e6f8c85885d9b42dcffc8cdd26c5@ec2-3-229-165-146.compute-1.amazonaws.com:5432/d12amqem5ik0vu"
 const sequelize = new Sequelize({
   database: "d12amqem5ik0vu",
   dialect: "postgres",
-  host: "ec2-3-229-165-146.compute-1.amazonaws.com",
+  host: `${DEPLOY_PASSWORD}`,
   port: "5432",
-  username: "nbedwromctzwid",
-  password: "2452d3bbad472a3f9aac2ec9bf62c0df98b0e6f8c85885d9b42dcffc8cdd26c5",
+  username: `${DEPLOY_USERNAME}`,
+  password: `${DEPLOY_PASSWORD}`,
   logging: false,
   pool: {
     max: 3,

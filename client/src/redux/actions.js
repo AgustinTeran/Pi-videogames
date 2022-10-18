@@ -1,5 +1,7 @@
 import axios from "axios"
 
+var back= axios.create({baseURL:"https://pi-videogames-back-delta.vercel.app"})
+
 export function Page(nro){
     return ({
         type: "PAGE",
@@ -10,7 +12,7 @@ export function Page(nro){
 
 export function Games(){
     return function(dispatch){
-        axios.get("https://pi-videogames-back-delta.vercel.app/videogames")
+        back.get("/videogames")
         .then(res => dispatch({type: "GAMES", payload: res.data}))
         .catch(err => console.error(err))
     }
@@ -18,7 +20,7 @@ export function Games(){
 
 export function Search(game){
     return function(dispatch){
-        axios.get(`https://pi-videogames-back-delta.vercel.app/videogames?name=${game}`)
+        back.get(`/videogames?name=${game}`)
         .then(res => dispatch({type: "SEARCH", payload: res.data}))
         .then(() => dispatch({type: "SEARCH_VALUE", payload: game}))
         .catch(err => console.error(err))
@@ -27,7 +29,7 @@ export function Search(game){
 
 export function GameDetail(id){
     return function(dispatch){
-        axios.get(`https://pi-videogames-back-delta.vercel.app/videogames/${id}`)
+        back.get(`/videogames/${id}`)
         .then(res => dispatch({type: "DETAILS",payload: res.data}))
         .catch(err => console.error(err))
     }
@@ -35,7 +37,7 @@ export function GameDetail(id){
 
 export function Genres(){
     return function(dispatch){
-        axios.get(`https://pi-videogames-back-delta.vercel.app/genres`)
+        back.get(`/genres`)
         .then(res => dispatch({type: "GENRES",payload: res.data}))
         .catch(err => console.error(err))
     }
@@ -43,7 +45,7 @@ export function Genres(){
 
 export function Platforms(){
     return function(dispatch){
-        axios.get("https://pi-videogames-back-delta.vercel.app/plataforms")
+        back.get("/plataforms")
         .then(res => dispatch({type:"PLATFORMS",payload:res.data}))
         .catch(err => console.error(err))
     }
@@ -51,7 +53,7 @@ export function Platforms(){
 
 export function Create(obj){
     return function(dispatch){
-        axios.post("https://pi-videogames-back-delta.vercel.app/videogames",obj)
+        back.post("/videogames",obj)
         .then(() => alert(`SE CREO ${obj.name}`))
         .catch(err => console.error(err))
     }

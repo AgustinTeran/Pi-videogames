@@ -11,6 +11,8 @@ export default function Nav(){
     var [pagCache,setPag] = useState(pagina)
     var search = useSelector(state => state.searchValue)
 
+    var [state,setState] = useState("")
+
     var dispatch = useDispatch()
 
     useEffect(() => {
@@ -27,7 +29,7 @@ export default function Nav(){
         <nav className={s.nav}>
                 <NavLink to={"/create"} className={s.link}><h4 className={s.create}>CREAR JUEGO</h4></NavLink>
                 <div className={s.buscador}>
-                     <input className={s.inp} type="text" placeholder="Buscar juego..." value={search} onChange={e => {dispatch(Search(e.target.value))}}/>
+                     <input className={s.inp} type="text" placeholder="Buscar juego..." value={!state && search.length > 1? search : state} onChange={e => {setState(e.target.value);dispatch(Search(e.target.value))}}/>
                 </div>
         </nav>
     )

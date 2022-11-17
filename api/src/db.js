@@ -3,19 +3,31 @@ const { Sequelize, Op} = require('sequelize');
 const fs = require('fs');
 const path = require('path');
 const {
-  DB_USER, DB_PASSWORD, DB_HOST,DEPLOY_HOST,DEPLOY_USERNAME,DEPLOY_PASSWORD,D_Host,D_Pass,D_User
+  D_Host,D_Pass,D_User
 } = process.env;
 
 
-const sequelize = new Sequelize(`postgres://${D_User}:${D_Pass}@${D_Host}/${D_User}`,{
-  logging:false,
-  native: false,
+const sequelize = new Sequelize({
+  database: `${D_User}`,
+  dialect: "postgres",
+  host: `${D_Host}`,
+  port: "5432",
+  username: `${D_User}`,
+  password: `${D_Pass}`,
+  logging: false,
+  pool: {
+    max: 3,
+    min: 1,
+    idle: 10000,
+  },
   dialectOptions: {
     ssl: {
       require: true,
       rejectUnauthorized: false,
     },
-  }
+    keepAlive: true,
+  },
+  ssl: true,
 });
 
 

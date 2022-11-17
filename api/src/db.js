@@ -8,12 +8,12 @@ const {
 
 
 const sequelize = new Sequelize({
-  database: "d12amqem5ik0vu",
+  database: `${D_User}`,
   dialect: "postgres",
-  host: `${DEPLOY_HOST}`,
+  host: `${D_Host}`,
   port: "5432",
-  username: `${DEPLOY_USERNAME}`,
-  password: `${DEPLOY_PASSWORD}`,
+  username: `${D_User}`,
+  password: `${D_Pass}`,
   logging: false,
   pool: {
     max: 3,

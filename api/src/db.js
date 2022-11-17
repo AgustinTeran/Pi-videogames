@@ -16,8 +16,7 @@ const sequelize = new Sequelize({
   password: `${D_Pass}`,
   logging: false,
   pool: {
-    max: 1,
-    idle: 10000,
+    max: 1
   },
   dialectOptions: {
     ssl: {

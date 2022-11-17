@@ -1,6 +1,6 @@
 import axios from "axios"
 
-var back= axios.create({baseURL:"https://pi-videogames-back-delta.vercel.app"})
+var back= axios.create({baseURL:"http://localhost:3001"})
 
 export function Page(nro){
     return ({

@@ -15,11 +15,10 @@ const sequelize = new Sequelize({
   username: `${D_User}`,
   password: `${D_Pass}`,
   logging: false,
-  // pool: {
-  //   max: 3,
-  //   min: 1,
-  //   idle: 10000,
-  // },
+  pool: {
+    max: 1,
+    idle: 10000,
+  },
   dialectOptions: {
     ssl: {
       require: true,

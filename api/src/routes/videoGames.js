@@ -40,11 +40,17 @@ router.get("/", async(req,res) => {
                         var results = res.data.results
                         for (let j = 0; j < results.length; j++) {
 
-                            for (let k = 0; k < results[j].platforms.length; k++) {
-                                await conn.models.Plataforms.findOrCreate({
-                                   where:{name: results[j].platforms[k].platform.name}
-                                })    
-                            }
+
+                            // COMENTO PARA MAYOR VELOCIDAD
+                            // ES IMPORTANTE CARGAR LAS PLATAFORMAS PERO 1 SOLA VEZ LOCALMENTE
+                            // 
+                            // si tengo que empezar la db desde 0 descomento 1 vez y vuelvo a comentar
+                            // 
+                            // for (let k = 0; k < results[j].platforms.length; k++) {
+                            //     await conn.models.Plataforms.findOrCreate({
+                            //        where:{name: results[j].platforms[k].platform.name}
+                            //     })    
+                            // }
 
                          gamesAPI.push({id: results[j].id, name: results[j].name, rating:results[j].rating, background_image: results[j].background_image,genres: results[j].genres.map(e => e.name)}) 
                             

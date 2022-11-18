@@ -3,17 +3,17 @@ const { Sequelize, Op} = require('sequelize');
 const fs = require('fs');
 const path = require('path');
 const {
-  D_Host,D_Pass,D_User,DEPLOY_HOST,DEPLOY_USERNAME,DEPLOY_PASSWORD
+  D_Host,D_Pass,D_User
 } = process.env;
 
 
 const sequelize = new Sequelize({
-  database: "d12amqem5ik0vu",
+  database: `${D_User}`,
   dialect: "postgres",
-  host: `${DEPLOY_HOST}`,
+  host: `${D_Host}`,
   port: "5432",
-  username: `${DEPLOY_USERNAME}`,
-  password: `${DEPLOY_PASSWORD}`,
+  username: `${D_User}`,
+  password: `${D_Pass}`,
   logging: false,
   pool: {
     max: 3

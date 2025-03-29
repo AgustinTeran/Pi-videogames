@@ -3,12 +3,12 @@ const { Sequelize, Op} = require('sequelize');
 const fs = require('fs');
 const path = require('path');
 const {
-  D_Host,D_Pass,D_User
+  D_Host,D_Pass,D_User,D_Database
 } = process.env;
 
 
 const sequelize = new Sequelize({
-  database: `${D_User}`,
+  database: `${D_Database}`,
   dialect: "postgres",
   host: `${D_Host}`,
   port: "5432",

@@ -24,7 +24,15 @@ const { conn } = require('./src/db.js');
 // Syncing all the models at once.
 
   server.listen(3001, async() => {
-    await conn.sync({ alter: true })
-    console.log('%s listening at 3001'); // eslint-disable-line no-console
+    try {
+      await conn.sync({ alter: true })
+       // eslint-disable-line no-console
+       console.log("Conection to the database sussessfully");
+       
+    } catch (error) {
+      console.error("Error trying to connect to the database"); // eslint-disable-line no-console
+    }
+
+    console.log('%s listening at 3001');
   });
 

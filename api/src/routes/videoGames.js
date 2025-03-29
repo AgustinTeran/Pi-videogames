@@ -34,31 +34,53 @@ router.get("/", async(req,res) => {
                let i = 1
                if(!Cache.length){
                 //console.log("Cargo los games de la api, osea que es el primer request si o si");
-                while(i < 6){
-                    await axios.get(`https://api.rawg.io/api/games?key=${API_KEY}&page=${i}`)
-                     .then(async(res) => {
-                        var results = res.data.results
-                        for (let j = 0; j < results.length; j++) {
+                
+                var requests = Array.from({ length: 6 }, (_, i) => 
+                    axios.get(`https://api.rawg.io/api/games?key=${API_KEY}&page=${i + 1}`)
+                );
+        
+                var responses = await Promise.all(requests);
+        
+                var gamesAPI = responses.flatMap(res => 
+                    res.data.results.map(game => ({
+                        id: game.id,
+                        name: game.name,
+                        rating: game.rating,
+                        background_image: game.background_image,
+                        genres: game.genres.map(e => e.name)
+                    }))
+                );
+
+                // console.log({gamesAPI});
+                
 
 
-                            // COMENTO PARA MAYOR VELOCIDAD
-                            // ES IMPORTANTE CARGAR LAS PLATAFORMAS PERO 1 SOLA VEZ LOCALMENTE
-                            // 
-                            // si tengo que empezar la db desde 0 descomento 1 vez y vuelvo a comentar
-                            // 
-                            // for (let k = 0; k < results[j].platforms.length; k++) {
-                            //     await conn.models.Plataforms.findOrCreate({
-                            //        where:{name: results[j].platforms[k].platform.name}
-                            //     })    
-                            // }
 
-                         gamesAPI.push({id: results[j].id, name: results[j].name, rating:results[j].rating, background_image: results[j].background_image,genres: results[j].genres.map(e => e.name)}) 
+                // while(i < 6){
+                //     await axios.get(`https://api.rawg.io/api/games?key=${API_KEY}&page=${i}`)
+                //      .then(async(res) => {
+                //         var results = res.data.results
+                //         for (let j = 0; j < results.length; j++) {
+
+
+                //             // COMENTO PARA MAYOR VELOCIDAD
+                //             // ES IMPORTANTE CARGAR LAS PLATAFORMAS PERO 1 SOLA VEZ LOCALMENTE
+                //             // 
+                //             // si tengo que empezar la db desde 0 descomento 1 vez y vuelvo a comentar
+                //             // 
+                //             // for (let k = 0; k < results[j].platforms.length; k++) {
+                //             //     await conn.models.Plataforms.findOrCreate({
+                //             //        where:{name: results[j].platforms[k].platform.name}
+                //             //     })    
+                //             // }
+
+                //          gamesAPI.push({id: results[j].id, name: results[j].name, rating:results[j].rating, background_image: results[j].background_image,genres: results[j].genres.map(e => e.name)}) 
                             
-                        }
-                      }
-                     )
-                     i++
-                }
+                //         }
+                //       }
+                //      )
+                //      i++
+                // }
                }
 
             //    console.log("Me muestro solo si es el primer request o se agrego un juego");

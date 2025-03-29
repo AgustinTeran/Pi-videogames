@@ -26,7 +26,8 @@ router.get("/",async(req,res) => {
             res.send(arrGenres)
         }        
     }catch(e){
-        res.send("Cannot bring the genres")
+
+        res.send({message:"Cannot bring the genres",error: e}) 
     }
 })
 

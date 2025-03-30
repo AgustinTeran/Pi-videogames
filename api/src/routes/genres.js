@@ -6,7 +6,7 @@ const {
 var axios = require("axios")
 var express = require("express")
 var router = express.Router()
-var {Genres} = require("../db")
+var {genres: Genres} = require("../db")
 
 router.get("/",async(req,res) => {
     try{

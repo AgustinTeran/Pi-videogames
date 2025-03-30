@@ -1,6 +1,6 @@
 var express = require("express")
 var router = express.Router()
-var {Plataforms} = require("../db")
+var {plataforms: Plataforms} = require("../db")
 
 router.get("/",async(req,res) => {
     try{

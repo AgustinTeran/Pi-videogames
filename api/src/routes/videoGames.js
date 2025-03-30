@@ -5,7 +5,7 @@ const {
 
 var express = require("express")
 var router = express.Router()
-var {Videogame, conn} = require("../db")
+var {videogame: Videogame, conn} = require("../db")
 var axios = require("axios")
 var {buscadora} = require("../funciones")
 
@@ -16,16 +16,16 @@ var gamesAPI = []
 router.get("/", async(req,res) => {
     try{
         var {name} = req.query
-        // console.log(req);
+        console.log(await Videogame.count());
 
         if(!Cache.length || await Videogame.count() !== cantidadGamesDb){
             cantidadGamesDb = await Videogame.count()
 
-            var gamesDB = await conn.models.Videogame.findAll({
+            var gamesDB = await Videogame.findAll({
                 attributes: ["id","name","background_image","rating"],
                 include: [{
                     attributes: ["name"],
-                    model: conn.models.Genres
+                    model: conn.models.genres
                 }]
                })
                gamesDB = gamesDB.map(e => {return {id: e.id,name: e.name,rating: e.rating, background_image: e.background_image, genres: e.genres.map(genre => genre.name)}})
@@ -51,7 +51,7 @@ router.get("/", async(req,res) => {
                     }))
                 );
 
-                // console.log({gamesAPI});
+                console.log({gamesAPI});
                 
 
 
@@ -96,6 +96,8 @@ router.get("/", async(req,res) => {
            res.send(buscadora(Cache,name)) 
        }
     }catch(e){
+        console.log(e);
+        
         res.send(e)
     }
 })
@@ -104,13 +106,13 @@ router.get("/:id",async(req,res) => {
     try{
         var {id} = req.params
         if(!Number(id)){
-            var videogame = await conn.models.Videogame.findByPk(id,{
+            var videogame = await conn.models.videogame.findByPk(id,{
                 include:[{
                     attributes: ["name"],
-                    model: conn.models.Genres
+                    model: conn.models.genres
                 },{
                     attributes: ["name"],
-                    model: conn.models.Plataforms
+                    model: conn.models.plataforms
                 }]
             })  
             var game = videogame.toJSON()
@@ -152,7 +154,7 @@ router.post("/",async(req,res) => {
 router.delete("/",async(req,res) => {
     try {
         var {id} = req.query
-        await conn.models.Videogame.destroy({
+        await conn.models.videogame.destroy({
             where: {id}
         })
         res.send("Game deleted")

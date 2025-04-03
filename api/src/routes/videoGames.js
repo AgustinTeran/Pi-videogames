@@ -16,7 +16,7 @@ var gamesAPI = []
 router.get("/", async(req,res) => {
     try{
         var {name} = req.query
-        console.log(await Videogame.count());
+        // console.log(await Videogame.count());
 
         if(!Cache.length || await Videogame.count() !== cantidadGamesDb){
             cantidadGamesDb = await Videogame.count()
@@ -51,7 +51,7 @@ router.get("/", async(req,res) => {
                     }))
                 );
 
-                console.log({gamesAPI});
+                // console.log({gamesAPI});
                 
 
 

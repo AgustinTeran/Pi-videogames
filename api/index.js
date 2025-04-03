@@ -37,4 +37,3 @@ const { conn } = require('./src/db.js');
 
     console.log('%s listening at 3001');
   });
-

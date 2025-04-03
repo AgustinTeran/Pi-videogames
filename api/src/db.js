@@ -10,6 +10,7 @@ const {
 const sequelize = new Sequelize({
   database: `${D_Database}`,
   dialect: "postgres",
+  dialectModule: require('pg'),
   host: `${D_Host}`,
   port: "5432",
   username: `${D_User}`,
@@ -62,8 +63,4 @@ plataforms.belongsToMany(videogame,{through: "games_plataforms"})
 // Aca vendrian las relaciones
 // Product.hasMany(Reviews);
 
-module.exports = {
-  ...sequelize.models, // para poder importar los modelos así: const { Product, User } = require('./db.js');
-  conn: sequelize,     // para importart la conexión { conn } = require('./db.js');
-  Op
-};
+module.exports = sequelize

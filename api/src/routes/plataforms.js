@@ -1,6 +1,8 @@
 var express = require("express")
 var router = express.Router()
-var {plataforms: Plataforms} = require("../db")
+var sequelize = require("../db")
+
+var Plataforms = sequelize.models.plataforms
 
 router.get("/",async(req,res) => {
     try{

@@ -7,7 +7,7 @@ var plataforms = require("./plataforms")
 
 const router = Router();
 
-var {conn} = require("../db")
+var sequelize = require("../db")
 
 // Configurar los routers
 // Ejemplo: router.use('/auth', authRouter);
@@ -21,7 +21,7 @@ router.get('/test', (req, res) => {
 
 router.get('/test2', async(req, res) => {
   try {
-    const [results] = await conn.query(`
+    const [results] = await sequelize.query(`
       SELECT pg_database_size(current_database()) / 1024 / 1024 AS size_in_mb;
     `);
     // console.log('Database size (MB):', results[0].size_in_mb);
@@ -31,7 +31,9 @@ router.get('/test2', async(req, res) => {
     
     res.send(`Database size: ${results[0].size_in_mb} MB`);
   } catch (error) {
-    res.send('Error getting database size');
+    res.send(
+      error.message || "Error getting database size"
+    );
   }
 });
 

@@ -6,7 +6,9 @@ const {
 var axios = require("axios")
 var express = require("express")
 var router = express.Router()
-var {genres: Genres} = require("../db")
+var sequelize = require('../db');
+
+var Genres = sequelize.models.genres
 
 router.get("/",async(req,res) => {
     try{

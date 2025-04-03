@@ -5,13 +5,15 @@ const {
 
 var express = require("express")
 var router = express.Router()
-var {videogame: Videogame, conn} = require("../db")
+var sequelize = require("../db")
 var axios = require("axios")
 var {buscadora} = require("../funciones")
 
+var Videogame = sequelize.models.videogame
+
 var Cache = [] // Para no estar haciendo pedidos a la api todo el tiempo, lo hago 1 vez y listo
 var cantidadGamesDb = "" 
-var gamesAPI = []
+// var gamesAPI = []
 
 router.get("/", async(req,res) => {
     try{
@@ -25,7 +27,7 @@ router.get("/", async(req,res) => {
                 attributes: ["id","name","background_image","rating"],
                 include: [{
                     attributes: ["name"],
-                    model: conn.models.genres
+                    model: sequelize.models.genres
                 }]
                })
                gamesDB = gamesDB.map(e => {return {id: e.id,name: e.name,rating: e.rating, background_image: e.background_image, genres: e.genres.map(genre => genre.name)}})
@@ -67,9 +69,9 @@ router.get("/", async(req,res) => {
                 //             // ES IMPORTANTE CARGAR LAS PLATAFORMAS PERO 1 SOLA VEZ LOCALMENTE
                 //             // 
                 //             // si tengo que empezar la db desde 0 descomento 1 vez y vuelvo a comentar
-                //             // 
+                            
                 //             // for (let k = 0; k < results[j].platforms.length; k++) {
-                //             //     await conn.models.Plataforms.findOrCreate({
+                //             //     await sequelize.models.plataforms.findOrCreate({
                 //             //        where:{name: results[j].platforms[k].platform.name}
                 //             //     })    
                 //             // }
@@ -106,13 +108,13 @@ router.get("/:id",async(req,res) => {
     try{
         var {id} = req.params
         if(!Number(id)){
-            var videogame = await conn.models.videogame.findByPk(id,{
+            var videogame = await sequelize.models.videogame.findByPk(id,{
                 include:[{
                     attributes: ["name"],
-                    model: conn.models.genres
+                    model: sequelize.models.genres
                 },{
                     attributes: ["name"],
-                    model: conn.models.plataforms
+                    model: sequelize.models.plataforms
                 }]
             })  
             var game = videogame.toJSON()
@@ -154,7 +156,7 @@ router.post("/",async(req,res) => {
 router.delete("/",async(req,res) => {
     try {
         var {id} = req.query
-        await conn.models.videogame.destroy({
+        await sequelize.models.videogame.destroy({
             where: {id}
         })
         res.send("Game deleted")

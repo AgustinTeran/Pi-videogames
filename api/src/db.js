@@ -18,7 +18,7 @@ const sequelize = new Sequelize({
   logging: false,
   pool: {
     max: 2,
-    acquire: 45000, // Tiempo máximo de espera antes de fallar la conexión
+    // acquire: 45000, // Tiempo máximo de espera antes de fallar la conexión
     // idle: 1000, // Tiempo máximo de inactividad antes de cerrar la conexión
   },
   dialectOptions: {
@@ -64,5 +64,19 @@ videogame.belongsToMany(plataforms,{through: "games_plataforms"})
 plataforms.belongsToMany(videogame,{through: "games_plataforms"})
 // Aca vendrian las relaciones
 // Product.hasMany(Reviews);
+
+async function databaseSync() {
+  try {
+    console.log("connecting to database");
+    
+    await sequelize.sync({alter: false})
+
+    console.log("Database connected");
+  } catch (error) {
+    console.error("Error connecting to database:", error);
+  }
+}
+
+databaseSync();
 
 module.exports = sequelize

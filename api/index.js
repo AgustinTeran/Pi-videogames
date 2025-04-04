@@ -19,23 +19,11 @@
 //     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 require("pg")
 var server = require('./src/app.js');
-var sequelize = require('./src/db.js');
+// var sequelize = require('./src/db.js');
 
 // Syncing all the models at once.
 
-async function databaseSync() {
-  try {
-    console.log("connecting to database");
-    
-    await sequelize.sync({alter: false})
 
-    console.log("Database connected");
-  } catch (error) {
-    console.error("Error connecting to database:", error);
-  }
-}
-
-databaseSync();
 
 server.listen(3001,() => {
 

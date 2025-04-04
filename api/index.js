@@ -35,7 +35,7 @@ async function databaseSync() {
   }
 }
 
-await databaseSync();
+databaseSync();
 
 server.listen(3001,() => {
 

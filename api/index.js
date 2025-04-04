@@ -17,28 +17,30 @@
 //     =====`-.____`.___ \_____/___.-`___.-'=====
 //                       `=---='
 //     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-require("pg")
+require("pg");
 var server = require('./src/app.js');
 var sequelize = require('./src/db.js');
 
 async function databaseSync() {
   try {
     console.log("connecting to database");
-    
-    await sequelize.sync().then(() => {
-      console.log("Database connected");
-    });
+
+    await sequelize.sync();
+    console.log("Database connected");
+    return "Connected";
   } catch (error) {
     console.error("Error connecting to database:", error);
+    return "Error connecting to database";
   }
 }
 
-databaseSync();
+// Función async autoejecutable
+(async () => {
+  var connection = await databaseSync();
+  console.log({ connection });
 
-
-
-server.listen(3001,() => {
-
-  console.log("server listening on port 3001");
- 
-})
+  // Una vez terminada la conexión, levanta el servidor
+  server.listen(3001, () => {
+    console.log("Server listening on port 3001");
+  });
+})();

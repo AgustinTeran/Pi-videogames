@@ -1,21 +1,38 @@
-require("pg");
-var server = require('./src/app.js');
-var sequelize = require('./src/db.js');
+//                       _oo0oo_
+//                      o8888888o
+//                      88" . "88
+//                      (| -_- |)
+//                      0\  =  /0
+//                    ___/`---'\___
+//                  .' \\|     |// '.
+//                 / \\|||  :  |||// \
+//                / _||||| -:- |||||- \
+//               |   | \\\  -  /// |   |
+//               | \_|  ''\---/''  |_/ |
+//               \  .-\__  '-'  ___/-. /
+//             ___'. .'  /--.--\  `. .'___
+//          ."" '<  `.___\_<|>_/___.' >' "".
+//         | | :  `- \`.;`\ _ /`;.`/ - ` : | |
+//         \  \ `_.   \_ __\ /__ _/   .-` /  /
+//     =====`-.____`.___ \_____/___.-`___.-'=====
+//                       `=---='
+//     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+require("pg")
+const server = require('./src/app.js');
+const sequelize = require('./src/db.js');
 
-async function startServer() {
+// Syncing all the models at once.
+
+server.listen(3001,async() => {
   try {
-    await sequelize.sync({ alter: true });
-    console.log("Database synced successfully");
-
-    server.listen(3001, () => {
-      console.log("Server listening on port 3001");
-    });
+    console.log("connecting to database");
+    
+    await sequelize.sync({alter: true})
+    console.log("Database connected");
+    
+    console.log("server listening on port 3001");
   } catch (error) {
-    console.error("Error syncing database:", error);
-    process.exit(1);
+    console.error("Error connecting to database:", error);
+    // process.exit(1);
   }
-}
-
-startServer();
-
-module.exports = server
+})

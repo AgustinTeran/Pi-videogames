@@ -18,21 +18,27 @@
 //                       `=---='
 //     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 require("pg")
-const server = require('./src/app.js');
-const sequelize = require('./src/db.js');
+var server = require('./src/app.js');
+var sequelize = require('./src/db.js');
 
 // Syncing all the models at once.
 
-server.listen(3001,async() => {
+async function databaseSync() {
   try {
     console.log("connecting to database");
     
     await sequelize.sync({alter: true})
+
     console.log("Database connected");
-    
-    console.log("server listening on port 3001");
   } catch (error) {
     console.error("Error connecting to database:", error);
-    // process.exit(1);
   }
+}
+
+await databaseSync();
+
+server.listen(3001,() => {
+
+  console.log("server listening on port 3001");
+ 
 })

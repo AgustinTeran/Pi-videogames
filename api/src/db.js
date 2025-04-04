@@ -17,7 +17,9 @@ const sequelize = new Sequelize({
   password: `${D_Pass}`,
   logging: false,
   pool: {
-    max: 3
+    max: 2,
+    acquire: 25000, // Tiempo máximo de espera antes de fallar la conexión
+    // idle: 10000, // Tiempo máximo de inactividad antes de cerrar la conexión
   },
   dialectOptions: {
     ssl: {

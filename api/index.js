@@ -27,7 +27,7 @@ async function databaseSync() {
   try {
     console.log("connecting to database");
     
-    await sequelize.sync({alter: true})
+    await sequelize.sync({alter: false})
 
     console.log("Database connected");
   } catch (error) {

@@ -18,8 +18,8 @@ const sequelize = new Sequelize({
   logging: false,
   pool: {
     max: 2,
-    acquire: 25000, // Tiempo máximo de espera antes de fallar la conexión
-    idle: 1000, // Tiempo máximo de inactividad antes de cerrar la conexión
+    acquire: 45000, // Tiempo máximo de espera antes de fallar la conexión
+    // idle: 1000, // Tiempo máximo de inactividad antes de cerrar la conexión
   },
   dialectOptions: {
     ssl: {
